@@ -7,24 +7,17 @@
 int main()
 {
     SequentialList list;
-    list.Insert(1, 'H');
-    list.Insert(2, 'e');
+    list.Insert(0, 'H');
+    list.Insert(1, 'e');
+    list.Insert(2, 'l');
     list.Insert(3, 'l');
-    list.Insert(4, 'l');
-    list.Insert(5, 'o');
-    list.Insert(6, '\0');
-    for(int i=0;i<7;i++)
+    list.Insert(4, 'o');
+    list.Insert(5, '\0');
+    for(int i=0;i<6;i++)
     {
-        char e;
-        if(list.GetElem(i,e))
-        {
-            std::cout << e;
-        }
-        else
-        {
-            std::cout << '\0';
-        }
+        std::cout << list[i];
     }
+    std::cout << list.LocateElem('l');
     getchar();
 }
 

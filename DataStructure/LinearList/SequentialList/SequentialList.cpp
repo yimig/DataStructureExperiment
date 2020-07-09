@@ -37,8 +37,8 @@ bool SequentialList::IsEmpty()
 //取值
 bool SequentialList::GetElem(int i, char &e)//e是取出来的数
 {
-    if (i<1 || i>length)return false;
-    e = elem[i - 1];
+    if (i<0 || i>=length)return false;
+    e = elem[i];
 }
 
 //查找
@@ -46,7 +46,7 @@ int SequentialList::LocateElem(char e)
 {
     for (int i = 0; i < length; i++)
     {
-        if (elem[i] == e)return i + 1;
+        if (elem[i] == e)return i;
     }
     return 0;
 }
@@ -54,13 +54,13 @@ int SequentialList::LocateElem(char e)
 //插入
 bool SequentialList::Insert(int i, char e)
 {
-    if (i<1 || i>length + 1)return false;
+    if (i<0 || i>length)return false;
     if (length == MAXSIZE)return false;
-    for (int j = length - 1; j >= i - 1; j--)
+    for (int j = length; j >= i; j--)
     {
         elem[j + 1] = elem[j];
     }
-    elem[i - 1] = e;
+    elem[i] = e;
     ++length;
     return true;
 }
@@ -68,10 +68,10 @@ bool SequentialList::Insert(int i, char e)
 //删除
 bool SequentialList::Delete(int i)
 {
-    if (i<1 || i>length)return false;
-    for (int j = i; j <= length - 1; j++)
+    if (i<0 || i>=length)return false;
+    for (int j = i+1; j < length; j++)
     {
-        elem[j - 1] = elem[j];
+        elem[j-1] = elem[j];
     }
     --length;
     return true;
@@ -80,4 +80,11 @@ bool SequentialList::Delete(int i)
 SequentialList::SequentialList()
 {
     InitList();
+}
+
+char SequentialList::operator[](int i)
+{
+    char e;
+    if(this->GetElem(i,e))return e;
+    else return '\0';
 }

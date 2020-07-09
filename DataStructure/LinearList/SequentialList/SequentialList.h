@@ -46,6 +46,8 @@ public:
     bool Delete(int i);
 
     SequentialList();
+
+    char operator[](int i);
 };
 
 #endif
